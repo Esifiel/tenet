@@ -29,9 +29,9 @@ class HexView(QtWidgets.QAbstractScrollArea):
         self.setMouseTracking(True)
 
         fm = QtGui.QFontMetricsF(font)
-        self._char_width = fm.width('9')
+        self._char_width = int(fm.width('9'))
         self._char_height = int(fm.tightBoundingRect('9').height() * 1.75)
-        self._char_descent = self._char_height - fm.descent()*0.75
+        self._char_descent = int(self._char_height - fm.descent()*0.75)
 
         self._click_timer = QtCore.QTimer(self)
         self._click_timer.setSingleShot(True)

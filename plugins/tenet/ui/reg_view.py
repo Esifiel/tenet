@@ -96,8 +96,8 @@ class RegisterArea(QtWidgets.QAbstractScrollArea):
         self.setFont(font)
 
         fm = QtGui.QFontMetricsF(font)
-        self._char_width = fm.width('9')
-        self._char_height = fm.height()
+        self._char_width = int(fm.width('9'))
+        self._char_height = int(fm.height())
 
         # default to fit roughly 50 printable characters
         self._default_width = self._char_width * (self.pctx.arch.POINTER_SIZE * 2 + 16)
@@ -151,7 +151,9 @@ class RegisterArea(QtWidgets.QAbstractScrollArea):
         # compute rects for the average reg labels and values
         fm = QtGui.QFontMetricsF(self.font())
         name_size = fm.boundingRect('X'*common_count).size()
+        name_size = QtCore.QSize(int(name_size.width()), int(name_size.height()))
         value_size = fm.boundingRect('0' * (self.model.arch.POINTER_SIZE * 2)).size()
+        value_size = QtCore.QSize(int(value_size.width()), int(value_size.height()))
         arrow_size = (int(value_size.height() * 0.70) & 0xFE) + 1
 
         # pre-compute the position of each register in the window

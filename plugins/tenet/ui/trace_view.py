@@ -489,7 +489,7 @@ class TraceBar(QtWidgets.QWidget):
         y += self._cell_border * relative_idx  # cell top border
 
         # return the y position of the cell corresponding to the given timestamp
-        return y
+        return int(y)
 
     def _pos2idx(self, y):
         """
@@ -1057,7 +1057,7 @@ class TraceBar(QtWidgets.QWidget):
         if self.cells_visible:
             cell_y = cursor_y + self._cell_border
             cell_body_height = self._cell_height - self._cell_border
-            cursor_y += self._cell_height/2
+            cursor_y += self._cell_height / 2
 
         # the top point of the triangle
         top_x = 0
